@@ -38,7 +38,7 @@ class FunctionsTest extends TestCase
     /**
      * @test
      */
-    public function it_should_produce_a_Request_to_get_all_subjects(): void
+    public function it_should_produce_a_Request_to_get_all_subjects()
     {
         $request = allSubjectsRequest();
 
@@ -50,7 +50,7 @@ class FunctionsTest extends TestCase
     /**
      * @test
      */
-    public function it_should_produce_a_Request_to_get_all_subject_versions(): void
+    public function it_should_produce_a_Request_to_get_all_subject_versions()
     {
         $request = allSubjectVersionsRequest('test');
 
@@ -62,7 +62,7 @@ class FunctionsTest extends TestCase
     /**
      * @test
      */
-    public function it_should_produce_a_Request_to_get_a_specific_subject_version(): void
+    public function it_should_produce_a_Request_to_get_a_specific_subject_version()
     {
         $request = singleSubjectVersionRequest('test', '3');
 
@@ -74,7 +74,7 @@ class FunctionsTest extends TestCase
     /**
      * @test
      */
-    public function it_should_produce_a_request_to_register_a_new_schema_version(): void
+    public function it_should_produce_a_request_to_register_a_new_schema_version()
     {
         $request = registerNewSchemaVersionWithSubjectRequest('{"type": "string"}', 'test');
 
@@ -94,7 +94,7 @@ class FunctionsTest extends TestCase
     /**
      * @test
      */
-    public function it_should_produce_a_request_to_check_schema_compatibility_against_a_subject_version(): void
+    public function it_should_produce_a_request_to_check_schema_compatibility_against_a_subject_version()
     {
         $request = checkSchemaCompatibilityAgainstVersionRequest(
             '{"type":"test"}',
@@ -111,7 +111,7 @@ class FunctionsTest extends TestCase
     /**
      * @test
      */
-    public function it_should_produce_a_request_to_check_if_a_subject_already_has_a_schema(): void
+    public function it_should_produce_a_request_to_check_if_a_subject_already_has_a_schema()
     {
         $request = checkIfSubjectHasSchemaRegisteredRequest('test', '{"type":"test"}');
 
@@ -124,7 +124,7 @@ class FunctionsTest extends TestCase
     /**
      * @test
      */
-    public function it_should_produce_a_request_to_get_a_specific_schema_by_id(): void
+    public function it_should_produce_a_request_to_get_a_specific_schema_by_id()
     {
         $request = schemaRequest('3');
 
@@ -136,7 +136,7 @@ class FunctionsTest extends TestCase
     /**
      * @test
      */
-    public function it_should_produce_a_request_to_get_the_global_compatibility_level(): void
+    public function it_should_produce_a_request_to_get_the_global_compatibility_level()
     {
         $request = defaultCompatibilityLevelRequest();
 
@@ -148,7 +148,7 @@ class FunctionsTest extends TestCase
     /**
      * @test
      */
-    public function it_should_produce_a_request_to_change_the_global_compatibility_level(): void
+    public function it_should_produce_a_request_to_change_the_global_compatibility_level()
     {
         $request = changeDefaultCompatibilityLevelRequest(COMPATIBILITY_FULL);
 
@@ -161,7 +161,7 @@ class FunctionsTest extends TestCase
     /**
      * @test
      */
-    public function it_should_produce_a_request_to_get_the_subject_compatibility_level(): void
+    public function it_should_produce_a_request_to_get_the_subject_compatibility_level()
     {
         $request = subjectCompatibilityLevelRequest('test');
 
@@ -173,7 +173,7 @@ class FunctionsTest extends TestCase
     /**
      * @test
      */
-    public function it_should_produce_a_request_to_change_the_subject_compatibility_level(): void
+    public function it_should_produce_a_request_to_change_the_subject_compatibility_level()
     {
         $request = changeSubjectCompatibilityLevelRequest('test', COMPATIBILITY_FORWARD);
 
@@ -189,7 +189,7 @@ class FunctionsTest extends TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage $schema must be a valid JSON string
      */
-    public function it_should_validate_a_JSON_schema_string(): void
+    public function it_should_validate_a_JSON_schema_string()
     {
         $this->assertJsonStringEqualsJsonString('{"type":"test"}', validateSchemaStringAsJson('{"type":"test"}'));
 
@@ -199,7 +199,7 @@ class FunctionsTest extends TestCase
     /**
      * @test
      */
-    public function it_should_prepare_a_JSON_schema_for_transfer(): void
+    public function it_should_prepare_a_JSON_schema_for_transfer()
     {
         $this->assertJsonStringEqualsJsonString(
             '{"schema":"{\"type\":\"string\"}"}',
@@ -218,7 +218,7 @@ class FunctionsTest extends TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage $level must be one of "NONE", "BACKWARD", "FORWARD" or "FULL"
      */
-    public function it_should_validate_a_compatibility_level_string(): void
+    public function it_should_validate_a_compatibility_level_string()
     {
         $this->assertEquals(
             COMPATIBILITY_NONE,
@@ -255,7 +255,7 @@ class FunctionsTest extends TestCase
     /**
      * @test
      */
-    public function it_should_prepare_compatibility_string_for_transport(): void
+    public function it_should_prepare_compatibility_string_for_transport()
     {
         $this->assertEquals(
             '{"compatibility":"NONE"}',
@@ -293,7 +293,7 @@ class FunctionsTest extends TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage $versionId must be an integer of type int or string
      */
-    public function it_should_validate_version_id_type(): void
+    public function it_should_validate_version_id_type()
     {
         validateVersionId([3]);
     }
@@ -304,7 +304,7 @@ class FunctionsTest extends TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage $versionId must be between 1 and 2^31 - 1
      */
-    public function it_should_validate_version_id_overflow(): void
+    public function it_should_validate_version_id_overflow()
     {
         validateVersionId(2 ** 31);
     }
@@ -315,7 +315,7 @@ class FunctionsTest extends TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage $versionId must be between 1 and 2^31 - 1
      */
-    public function it_should_validate_version_id_less_than_one(): void
+    public function it_should_validate_version_id_less_than_one()
     {
         validateVersionId(0);
     }
@@ -323,7 +323,7 @@ class FunctionsTest extends TestCase
     /**
      * @test
      */
-    public function it_should_validate_valid_version_id(): void
+    public function it_should_validate_valid_version_id()
     {
         $this->assertSame(VERSION_LATEST, validateVersionId(VERSION_LATEST));
         $this->assertSame('3', validateVersionId(3));
@@ -333,7 +333,7 @@ class FunctionsTest extends TestCase
     /**
      * @test
      */
-    public function it_should_validate_valid_schema_ids(): void
+    public function it_should_validate_valid_schema_ids()
     {
         $this->assertSame('3', validateSchemaId(3));
         $this->assertSame('3', validateSchemaId('3'));
@@ -342,7 +342,7 @@ class FunctionsTest extends TestCase
     /**
      * @test
      */
-    public function it_should_produce_a_valid_subject_deletion_request(): void
+    public function it_should_produce_a_valid_subject_deletion_request()
     {
         $request = deleteSubjectRequest('test');
 
@@ -354,7 +354,7 @@ class FunctionsTest extends TestCase
     /**
      * @test
      */
-    public function it_should_produce_a_valid_subject_version_deletion_request(): void
+    public function it_should_produce_a_valid_subject_version_deletion_request()
     {
         $request = deleteSubjectVersionRequest('test', VERSION_LATEST);
 
