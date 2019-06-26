@@ -26,7 +26,7 @@ class DoctrineCacheAdapter implements CacheAdapter
     /**
      * {@inheritdoc}
      */
-    public function cacheSchemaWithId(AvroSchema $schema, int $schemaId): void
+    public function cacheSchemaWithId(AvroSchema $schema, int $schemaId)
     {
         $this->doctrineCache->save((string) $schemaId, (string) $schema);
     }

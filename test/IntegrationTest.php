@@ -37,7 +37,7 @@ use function FlixTech\SchemaRegistryApi\Requests\subjectCompatibilityLevelReques
  */
 class IntegrationTest extends TestCase
 {
-    public const SUBJECT_NAME = 'integration-test';
+    const SUBJECT_NAME = 'integration-test';
 
     /**
      * @var \GuzzleHttp\ClientInterface
@@ -117,7 +117,7 @@ INCOMPATIBLE;
     /**
      * @test
      */
-    public function managing_subjects_and_versions(): void
+    public function managing_subjects_and_versions()
     {
         $this->client
             ->sendAsync(allSubjectsRequest())
@@ -273,7 +273,7 @@ INCOMPATIBLE;
     /**
      * @test
      */
-    public function managing_compatibility_levels(): void
+    public function managing_compatibility_levels()
     {
         $this->client
             ->sendAsync(defaultCompatibilityLevelRequest())
